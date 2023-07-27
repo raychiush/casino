@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+    Black Jack
+
+{% endblock %}
+
+{% block main %}
+
+    {% if bet %}
+
+        <p class="lead"><strong><mark>💸 Loss bet: -${{ bet }}</mark></strong></p>
+    
+    {% endif %}
+
+    {% if reward %}
+
+        <p class="lead"><strong><mark>💰 Gain: +${{ reward }}</mark></strong></p>
+
+    {% endif %}
+
+    <h3 class="text-centre">Result</h3>
+
+    <p class="lead"><u>Dealer's hand</u></p>
+    <p class="lead">
+        {% for card in dealer_hand %}
+            <img src="static/{{ card }}.svg" width="100" height="auto" />
+        {% endfor %}
+    </p>
+
+    <p class="lead"><u>Your hand</u></p>
+    <p class="lead">
+    {% for card in player_hand %}
+        <img src="static/{{ card }}.svg" width="100" height="auto" />
+    {% endfor %}
+    </p>
+
+    <div class="text-center">
+        <a href="/blackjack">
+            <button type="botton" class="btn btn-primary">Play again</button>
+        </a>
+    </div>
+
+
+{% endblock %}

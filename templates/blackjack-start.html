@@ -1,0 +1,99 @@
+{% extends "layout.html" %}
+
+{% block javascript %}
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function(){
+
+            document.getElementById("add100").addEventListener("click", function(){
+                let bet = Number(document.getElementById("bet").textContent);
+                if (bet < 3000) {
+                    bet += 100;
+                }
+                document.getElementById("bet").innerHTML = bet;
+                document.getElementById("finalbet").setAttribute("value", bet);
+            });
+
+            document.getElementById("subtract100").addEventListener("click", function(){
+                let bet = Number(document.getElementById("bet").textContent);
+                if (bet > 100) {
+                    bet -= 100;
+                }
+                document.getElementById("bet").innerHTML = bet;
+                document.getElementById("finalbet").setAttribute("value", bet);
+            })
+
+            document.getElementById("maxbet").addEventListener("click", function(){
+                document.getElementById("bet").innerHTML = 3000;
+                document.getElementById("finalbet").setAttribute("value", 3000);
+            })
+
+        });
+    </script>
+
+{% endblock %}
+
+{% block title %}
+    
+    Black Jack
+
+{% endblock %}
+
+{% block main %}
+
+    <div class="card text-center">
+        <div class="card-header">
+            Place your bet here!
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">$<span id="bet">100</span></h5>
+            <div class="text-centre" role="group">
+                <button type="button" class="btn btn-secondary" id="add100" name="add100">+$100</button>
+                <button type="button" class="btn btn-secondary" id="subtract100" name="subtract100">-$100</button>
+                <button type="button" class="btn btn-secondary" id="maxbet" name="maxbet">Max</button>
+            </div>
+        </div>
+    </div>
+    <br>
+    <form name="placebet" action="/blackjack" method="post">
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary" id="choice" name="choice" value="start">Place bet and start</button>
+            <input hidden id="finalbet" name="finalbet" value="100">
+        </div>
+    </form>
+    <br>
+    <h3 class="text-centre">Rules</h3>
+    <table class="table">
+        <tbody>
+          <tr>
+            <th scope="row">Minimum bet:</th>
+            <td>$100</td>
+          </tr>
+          <tr>
+            <th scope="row">Maximum bet:</th>
+            <td>$3,000</td>
+          </tr>
+          <tr>
+            <th scope="row">Winning (Normal)</th>
+            <td>You will get back x2.0 of your bet.</td>
+          </tr>
+          <tr>
+            <th scope="row">Winning (Blackjack)</th>
+            <td>You will get back x3.0 of your bet.</td>
+          </tr>
+          <tr>
+            <th scope="row">Winning (Charlie)</th>
+            <td>You will get back x5.0 of your bet.</td>
+          </tr>
+          <tr>
+            <th scope="row">Losing</th>
+            <td>You will lose all of your bet.</td>
+          </tr>
+          <tr>
+            <th scope="row">Surrender</th>
+            <td>You will lose half of your bet.</td>
+          </tr>
+        </tbody>
+      </table>
+
+{% endblock %}

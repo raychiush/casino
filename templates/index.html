@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+    Welcome back, {{  user[0]["username"] }}!
+
+{% endblock %}
+
+
+{% block main %}
+
+    <div class="card text-center">
+        <div class="card-header">
+        Your balance:
+        </div>
+        <div class="card-body">
+        <h5 class="card-title">${{ user[0]["cash"] }}</h5>
+        <a href="/blackjack" class="btn btn-primary">Play Blackjack</a>
+        <a href="/history" class="btn btn-primary">View game history</a>
+        </div>
+    </div>
+
+    <img src="/static/casino.jpeg" class="img-fluid" alt="Responsive image">
+
+{% endblock %}

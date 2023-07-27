@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    
+    Black Jack
+
+{% endblock %}
+
+{% block main %}
+
+    <p class="lead"><strong><mark>Current bet: ${{ bet }}</mark></strong></p>
+
+    <p class="lead"><u>Dealer's showing</u></p>
+    <img src="static/{{ dealer_hand[0] }}.svg" width="100" height="auto" />
+
+    <p class="lead"><u>Your hand</u></p>
+    <p>
+    {% for card in player_hand %}
+        <img src="static/{{ card }}.svg" width="100" height="auto" />
+    {% endfor %}
+    </p>
+    <form action="/blackjack" method="post">
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary w-25" id="choice1" name="choice" value="hit">Hit</button>
+            <button type="submit" class="btn btn-primary w-25" id="choice2" name="choice" value="stand">Stand</button>
+            <button type="submit" class="btn btn-primary w-25" id="choice3" name="choice" value="quit">Surrender</button>
+        </div>
+    </form>
+
+{% endblock %}

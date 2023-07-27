@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+    History
+
+{% endblock %}
+
+
+{% block main %}
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Date/Time</th>
+        <th scope="col">Game</th>
+        <th scope="col">Result</th>
+        <th scope="col">Gain/Loss</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for record in records %}
+            <tr>
+                <th scope="row">{{ record["year"] }}-{{ record["month"] }}-{{ record["day"] }} {{ record["hour"] }}:{{ record["minute"] }}</th>
+                <td>{{ record["game"] }}</td>
+                <td>{{ record["result"] }}</td>
+                <td>
+                    {% if record["result"] == "win" %}
+                        <span style="color:darkgreen">+${{ record["bet"] }}</span>
+                    {% endif %}
+                    {% if record["result"] == "lose" or record["result"] == "surrender" %}
+                    <span style="color:red">-${{ record["bet"] }}</span>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+{% endblock %}
